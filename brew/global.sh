@@ -18,6 +18,21 @@ else
   msg_ok "OK"
 fi
 
+# nvm && install node 10.15
+if which node &> /dev/null; then
+  msg_checking "nvm"
+else
+  msg_install "nvm" "brew install nvm"
+  brew install nvm
+  msg_ok "NVM"
+  mkdir ~/.nvm
+  source ~/.zshrc
+  nvm install 10.15
+  msg_ok "NODE 10.15"
+  source ~/.zshrc
+  nvm use 10.15
+fi
+
 # mongo
 if which mongod &> /dev/null; then
     msg_checking "mongodb"
