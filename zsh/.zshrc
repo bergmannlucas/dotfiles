@@ -8,23 +8,20 @@ ZSH_THEME="af-magic"
 
 # Which plugins would you like to load?
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-# aliases
 source ~/.zsh_profile
-alias gtree="git log --oneline --decorate --all --graph"
-alias unstage="git reset HEAD --"
-alias uncommit="git reset --soft HEAD~1"
-alias recommit="git commit --amend --no-edit"
-alias tempo="curl wttr.in"
 
 export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="$PATH:/Users/bergmannlucas/Library/Python/3.9/bin"
 
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+eval "$(starship init zsh)"

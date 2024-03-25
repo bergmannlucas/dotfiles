@@ -1,2 +1,15 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
+PERSONAL=$XDG_CONFIG_HOME/personal
+source $PERSONAL/env
+for i in `find -L $PERSONAL`; do
+    source $i
+done
+
 export GOPATH=$HOME/go
 export DOTFILES=$HOME/.dotfiles
+
+addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/bin
+
+bindkey -s ^f "tmux-sessionizer\n"

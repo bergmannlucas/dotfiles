@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+alias gtree="git log --oneline --decorate --all --graph"
+alias unstage="git reset HEAD --"
+alias uncommit="git reset --soft HEAD~1"
+alias recommit="git commit --amend --no-edit"
+alias dot="cd ~/.dotfiles"
+alias tempo="curl wttr.in"
