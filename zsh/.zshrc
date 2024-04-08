@@ -4,10 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load?
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
@@ -16,7 +15,7 @@ source ~/.zsh_profile
 
 export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
-
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$PATH:/Users/bergmannlucas/Library/Python/3.9/bin"
 
