@@ -15,6 +15,9 @@ brew "zsh-autosuggestions"
 brew "tmux"
 brew "neovim"
 brew "starship"
+brew "hugo"
+brew "k9s"
+brew "gh"
 
 # Apps
 cask 'docker'
@@ -24,3 +27,4 @@ cask 'visual-studio-code'
 cask 'zoom'
 cask 'iterm2'
 cask 'rectangle'
+cask 'brave-browser'
