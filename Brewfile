@@ -18,6 +18,7 @@ brew "starship"
 brew "hugo"
 brew "k9s"
 brew "gh"
+brew "btop"
 
 # Apps
 cask 'docker'
@@ -28,3 +29,4 @@ cask 'zoom'
 cask 'iterm2'
 cask 'rectangle'
 cask 'brave-browser'
+cask 'kitty'
