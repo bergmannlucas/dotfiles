@@ -1,0 +1,6 @@
+.gitignore
+.gitmodules
+.git
+Brewfile
+Makefile
+README.md

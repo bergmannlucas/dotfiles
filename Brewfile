@@ -19,6 +19,7 @@ brew "hugo"
 brew "k9s"
 brew "gh"
 brew "btop"
+brew "yazi"
 
 # Apps
 cask 'docker'

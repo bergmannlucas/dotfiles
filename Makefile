@@ -1,5 +1,9 @@
-install:
-	stow --verbose --target=$$HOME --restow */
+TARGET := $(HOME)
 
-delete:
-	stow --verbose --target=$$HOME --delete */
+install:
+	stow --verbose --target=$(TARGET) --dir=$(PWD) .
+
+uninstall:
+	stow --verbose --target=$(TARGET) --dir=$(PWD) --delete .
+
+reinstall: uninstall install
