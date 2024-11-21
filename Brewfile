@@ -20,6 +20,7 @@ brew "k9s"
 brew "gh"
 brew "btop"
 brew "yazi"
+brew "awscli-local"
 
 # Apps
 cask 'docker'
