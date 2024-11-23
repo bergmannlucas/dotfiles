@@ -67,6 +67,28 @@
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
 
+      system.defaults = {
+        dock.autohide = true;
+        dock.persistent-apps = [
+          "${pkgs.spotify}/Applications/Spotify.app"
+          "${pkgs.obsidian}/Applications/Obsidian.app"
+          "/Applications/Todoist.app"
+          "${pkgs.slack}/Applications/Slack.app"
+          "${pkgs.brave}/Applications/Brave Browser.app"
+          "${pkgs.kitty}/Applications/kitty.app"
+          "${pkgs.vscode}/Applications/Visual Studio Code.app"
+          "/Applications/Insomnia.app"
+          "/Applications/Docker.app"
+          "${pkgs.dbeaver-bin}/Applications/DBeaver.app"
+          "/Applications/Another Redis Desktop Manager.app"
+        ];
+        finder.FXPreferredViewStyle = "clmv";
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain.KeyRepeat = 2;
+      };
+
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
