@@ -16,6 +16,8 @@
       nixpkgs.config.allowUnfree = true;
       environment.systemPackages = [ 
         pkgs.kitty
+        pkgs.zsh
+        pkgs.oh-my-posh
         pkgs.tmux
         pkgs.neovim
         pkgs.stow
@@ -26,13 +28,11 @@
         pkgs.k9s
         pkgs.vscode
         pkgs.yazi
-        pkgs.starship
         pkgs.hugo
         pkgs.btop
         pkgs.htop
         pkgs.stats
         pkgs.zoom-us
-        pkgs.zsh
         pkgs.wget
         pkgs.slack
         pkgs.rectangle
@@ -48,7 +48,7 @@
       homebrew = {
         enable = true;
         brews = [
-          "zsh-autosuggestions"
+          "mas"
           "awscli-local"
         ];
         casks = [
@@ -56,9 +56,13 @@
           "insomnia"
           "another-redis-desktop-manager"
           "todoist"
+          "notion-calendar"
         ];
         taps = [
         ];
+        masApps = {
+          Vetero = 6449091332;
+        };
       };
 
       # Necessary for using flakes on this system.
@@ -70,6 +74,7 @@
       system.defaults = {
         dock.autohide = true;
         dock.persistent-apps = [
+          "/Applications/Notion Calendar.app"
           "${pkgs.spotify}/Applications/Spotify.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "/Applications/Todoist.app"

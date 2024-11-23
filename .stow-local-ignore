@@ -1,6 +1,6 @@
 .gitignore
 .gitmodules
 .git
-Brewfile
 Makefile
+nix
 README.md
