@@ -1,24 +1,20 @@
-{ username, ... } @ args: 
-let
-  hostname = "air";
-in {
+{
   imports = [
-    ../../modules/darwin
+    ./apps.nix
+    ./nix-core.nix
+    ./system.nix
   ];
 
-  # networking.hostname = hostname;
-  networking.computerName = hostname;
-  system.defaults.smb.NetBIOSName = hostname;
+  networking.computerName = "air";
+  system.defaults.smb.NetBIOSName = "air";
 
-  users.users."${username}" = {
-    home = "/Users/${username}";
-    name = username;
-    description = username;
+  users.users.bergmannlucas = {
+    home = "/Users/bergmannlucas";
+    name = "bergmannlucas";
+    description = "bergmannlucas";
   };
 
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = ["bergmannlucas"];
 
   system.stateVersion = 5;
 }
-
-

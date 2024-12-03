@@ -1,70 +1,27 @@
 {
   description = "Bergmann's system configurations and modules";
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    nix-darwin,
-    nix-homebrew,
-    home-manager,
-    ...
-  }: let 
-    username = "bergmannlucas";
-    userfullname = "Lucas Bergmann";
-    useremail = "bergmannlcs@proton.me";
-
-    x64_system = "x86_64-linux";
-    x64_darwin = "aarch64-darwin";
-    allSystems = [x64_system x64_darwin];
-
-    #nixosSystem = import ./lib/nixosSystem.nix;
-    macosSystem = import ./lib/macosSystem.nix;
-  in {
-    darwinConfigurations = let
-      system = x64_darwin;
-      specialArgs = {
-        inherit username userfullname useremail;
-
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      }
-      // inputs;
-      base_args = {
-        inherit nix-darwin home-manager system specialArgs;
-      };
-    in {
-      air = macosSystem (base_args // {
-        darwin-modules = [
-          ./hosts/air
-        ];
-        home-module = import ./home/darwin;
-      });
-    };
-
-    # format the nix code in this flake
-    # alejandra is a nix formatter with a beautiful output
-    formatter = nixpkgs.lib.genAttrs allSystems (
-      system:
-        nixpkgs.legacyPackages.${system}.alejandra
-    );
-  };
-
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # Nixpkgs
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Unstable Packages
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.05";
 
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    # Disko
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Home Manager
     home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-homebrew = {
@@ -72,7 +29,60 @@
     };
   };
 
-  nixConfig = {
-    experimental-features = "nix-command flakes";
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    nixpkgs-darwin,
+    nix-darwin,
+    nix-homebrew,
+    disko,
+    home-manager,
+    ...
+  } @ inputs: let 
+    inherit (self) outputs;
+
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+  in {
+    nixosConfigurations = {
+      kazordoon = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/kazordoon
+          inputs.disko.nixosModules.disko
+        ];
+      };
+    };
+    homeConfigurations = {
+      "bergmannlucas@kazordoon" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home/bergmannlucas/bergmannlucas.nix];
+      };
+    };
+
+    darwinConfigurations = {
+      air = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/air
+          home-manager.darwinModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bergmannlucas = import ./home/darwin/home.nix;
+            # home-manager.extraSpecialArgs = {
+            #   inherit inputs;
+            #   meta = host;
+            # };
+          }
+        ];
+      };
+    };
   };
 }
