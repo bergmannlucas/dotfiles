@@ -26,5 +26,5 @@
     packages = [inputs.home-manager.packages.${pkgs.system}.default];
   };
   home-manager.users.bergmannlucas =
-    import ../../../home/bergmannlucas/${config.networking.hostName}.nix;
+    import ../../../home/bergmannlucas/home.nix;
 }

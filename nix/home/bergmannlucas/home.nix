@@ -7,6 +7,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../common
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = lib.mkDefault "bergmannlucas";
@@ -21,10 +25,21 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  # nixpkgs.config.allowUnfree = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     kitty
+    zsh
+    oh-my-posh
+    tmux
+    neovim
+    obsidian
+    gh 
+    vscode 
+    yazi 
+    brave
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

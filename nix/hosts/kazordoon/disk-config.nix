@@ -3,6 +3,7 @@
     disk = {
       main = {
         type = "disk";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -11,7 +12,7 @@
               type = "EF02"; # for grub MBR
             };
             ESP = {
-              size = "1G";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";

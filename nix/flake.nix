@@ -6,7 +6,7 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Unstable Packages
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.05";
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.05";
 
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     nix-darwin = {
@@ -32,7 +32,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
+    # nixpkgs-stable,
     nixpkgs-darwin,
     nix-darwin,
     nix-homebrew,
@@ -63,7 +63,7 @@
       "bergmannlucas@kazordoon" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/bergmannlucas/bergmannlucas.nix];
+        modules = [./home/bergmannlucas/home.nix];
       };
     };
 
