@@ -7,7 +7,7 @@ for i in `find -L $PERSONAL`; do
 done
 
 export GOPATH=$HOME/go
-export DOTFILES=$HOME/.dotfiles
+export DOTFILES=$HOME/dev/dotfiles
 
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
