@@ -1,22 +1,44 @@
-# AEROSPACE CONFIG
-start-at-login = true
-
-after-login-command = []
-
 after-startup-command = [
      'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color=0xCFEBBF83 inactive_color=0x33434c5e width=4.0'
-#     'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar'
 ]
 
-exec-on-workspace-change = [
-  '/bin/bash',
-  '-c',
-  'sketchybar --trigger aerospace_workspace_changed FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
-on-focused-monitor-changed = [
-  'move-mouse monitor-lazy-center'
-]
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+accordion-padding = 10
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Mouse follows focus when focused monitor changes
+# Drop it from your config, if you don't like this behavior
+# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+# Fallback value (if you omit the key): on-focused-monitor-changed = []
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
+automatically-unhide-macos-hidden-apps = false
 
 on-focus-changed = [
   'move-mouse window-lazy-center',
@@ -24,46 +46,31 @@ on-focus-changed = [
   'exec-and-forget sketchybar --trigger update_windows'
 ]
 
-enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+# Possible values: (qwerty|dvorak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+[key-mapping]
+preset = 'qwerty'
 
-accordion-padding = 30
-
-default-root-container-layout = 'tiles'
-
-default-root-container-orientation = 'auto'
-
-key-mapping.preset = 'qwerty'
-
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-#outer.bottom numbers have to match presentation.sh variables. built-in retina display is excluded from presentation mode, so this only works on external monitors.
-outer.bottom =        [{monitor.'^built-in retina display$' = 10 }, 10]
-outer.top =        52
-outer.left =       13
-outer.right =      13
 inner.horizontal = 10
 inner.vertical =   10
+outer.left =       10
+outer.bottom =     10
+outer.top =        40
+outer.right =      10
 
-[exec]                   # Again, you don't need to copy all config sections to your config.
-inherit-env-vars = true  # If you don't touch "exec" section,
-[exec.env-vars]          # it will fallback to "default-config.toml"
-PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
-
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+# Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
-#cmd-space = 'layout floating tiling'
-#cmd-r = [
-#  'mode resize',
-#  'exec-and-forget sketchybar --trigger send_message MESSAGE="RESIZE MODE" HOLD="true"'
-#]
-
-#cmd-keypadMinus = 'resize smart -70'
-#cmd-keypadPlus = 'resize smart +70'
-
-#cmd-g = 'mode join'
-#cmd-q = [
-#  'close --quit-if-last-window'
-#]
-#cmd-w = []
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z
@@ -78,45 +85,48 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # All possible modifiers: cmd, alt, ctrl, shift
 
-# alt-enter = 'exec-and-forget open -n /Volumes/Macintosh\ HD/Applications/Alacritty.app'
-# alt-m = 'exec-and-forget open -n /Volumes/Macintosh\ HD/Applications/Marta.app'
-
 alt-shift-f = 'macos-native-fullscreen'
 alt-f = 'fullscreen'
 alt-ctrl-f = 'layout floating'
 
-alt-g = 'split horizontal'
-alt-v = 'split vertical'
+alt-shift-left = 'join-with left'
+alt-shift-down = 'join-with down'
+alt-shift-up = 'join-with up'
+alt-shift-right = 'join-with right'
 
-alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop left'
-alt-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop down'
-alt-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop up'
-alt-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop right'
-#alt-left = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop left'
-#alt-down = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop down'
-#alt-up = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop up'
-#alt-right = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop right'
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
-#alt-shift-left = 'move left'
-#alt-shift-down = 'move down'
-#alt-shift-up = 'move up'
-#alt-shift-right = 'move right'
 
-alt-1 = 'workspace 1'  # Slack
-alt-2 = 'workspace 2'  # Kitty
-alt-3 = 'workspace 3'  # Vscode
-alt-4 = 'workspace 4'  # Dbeaver
-alt-5 = 'workspace 5'  # Insomnia
-alt-6 = 'workspace 6'  # Brave
-alt-7 = 'workspace 7'  # Brave
-alt-8 = 'workspace 8'  # Spotify
-alt-9 = 'workspace 9'  # Todoist
-alt-0 = 'workspace 10' # ?
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-1 = 'workspace 1'  
+alt-2 = 'workspace 2'  
+alt-3 = 'workspace 3'  
+alt-4 = 'workspace 4'  
+alt-5 = 'workspace 5'  
+alt-6 = 'workspace 6'  
+alt-7 = 'workspace 7'  
+alt-8 = 'workspace 8'  
+alt-9 = 'workspace 9'  
+alt-0 = 'workspace 10'  
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
@@ -129,70 +139,24 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
 alt-tab = 'workspace-back-and-forth'
-alt-p = 'move-workspace-to-monitor --wrap-around next'
-#alt-shift-p = [
-#  'move-node-to-monitor --wrap-around next',
-# 'focus-monitor next --wrap-around' 
-#]
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-#alt-shift-semicolon = [
-#  'mode service',
-# 'exec-and-forget sketchybar --trigger send_message MESSAGE="SERVICE MODE" HOLD="true"'
-#]
-alt-shift-semicolon = [
-  'mode service',
-  'exec-and-forget sketchybar --trigger send_message MESSAGE="SERVICE MODE" HOLD="true"'
-]
-#alt-shift-semicolon = 'mode service'
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+alt-shift-semicolon = 'mode service'
+alt-shift-enter = 'mode apps'
 
+alt-q = 'exec-and-forget open -a /Applications/kitty.app'
+
+# 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-esc = [
- 'reload-config',
- 'exec-and-forget sketchybar --trigger hide_message',
- 'exec-and-forget sketchybar --reload',
- 'mode main'
-]
+esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-
-
-b = [
-   'exec-and-forget ~/.config/aerospace/presentation.sh on',
-   'exec-and-forget sketchybar --bar height=0',
-   'exec-and-forget sketchybar --trigger hide_message',
-   'mode main'
-]
-shift-b = [
-   'exec-and-forget ~/.config/aerospace/presentation.sh off',
-   'exec-and-forget sketchybar --bar height=36',
-   'exec-and-forget sketchybar --trigger hide_message',
-   'mode main'
-]
-
+f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
-[mode.resize.binding]
-keypadMinus = 'resize smart -70'
-keypadPlus = 'resize smart +70'
-h = ['resize width -64']
-j = ['resize height -64']
-k = ['resize height +64']
-l = ['resize width +64']
-esc = [
-  'mode main',
-  'exec-and-forget sketchybar --trigger hide_message'
-]
-enter = [
-  'mode main',
-  'exec-and-forget sketchybar --trigger hide_message'
-]
-
-[mode.join.binding]
-h = ['join-with left', 'mode main']
-j = ['join-with down', 'mode main']
-k = ['join-with up', 'mode main']
-l = ['join-with right', 'mode main']
-
+[mode.apps.binding]
+alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
 
 [workspace-to-monitor-force-assignment]
 1 = '^built-in retina display$' 
@@ -204,13 +168,14 @@ l = ['join-with right', 'mode main']
 7 = '27GN7'
 8 = '27GN7'
 9 = '27GN7'
-0 = '27GN7'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = [
-'layout floating'
-]
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'              
+run = ['move-node-to-workspace 1']  
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'              
@@ -219,6 +184,14 @@ run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'              
 run = ['move-node-to-workspace 3']  
+
+[[on-window-detected]]
+if.app-id = 'org.jkiss.dbeaver.core.product'              
+run = ['move-node-to-workspace 4']  
+
+[[on-window-detected]]
+if.app-id = 'com.insomnia.app'              
+run = ['move-node-to-workspace 5']  
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'              
