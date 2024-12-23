@@ -1,6 +1,6 @@
 {outputs, ...}: {
   imports = [
-
+    ../modules/home.nix
   ];
 
   # Nixpkgs configuration

@@ -57,8 +57,7 @@
           userConfig = users.${username};
         };
         modules = [
-          # ./hosts/${hostname}/configuration.nix
-          ./hosts/${hostname}
+          ./hosts/${hostname}/configuration.nix
           inputs.disko.nixosModules.disko
         ];
       };
