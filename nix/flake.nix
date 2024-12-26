@@ -99,7 +99,7 @@
     };
 
     homeConfigurations = {
-      "bergmannlucas@kazordoon" = mkHomeConfiguration "x86_64-linux" "bergmannlucas" "kazordoon";
+      "bergmannlucas@kazordoon" = mkHomeConfiguration "x86_64-linux" "bergmannlucas" "bergmannlucas-kazordoon";
     };
 
     overlays = import ./overlays {inherit inputs;};

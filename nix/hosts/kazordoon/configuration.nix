@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       ./disk-config.nix
       ../modules/common.nix
+      ../modules/hyprland.nix
     ];
 
   # Set hostname

@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ../modules/common.nix
+    ../modules/hyprland.nix
   ];
 
   # Enable home-manager

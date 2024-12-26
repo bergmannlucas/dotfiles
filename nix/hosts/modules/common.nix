@@ -151,8 +151,6 @@
     vscode 
     yazi 
     brave
-    wofi
-    waybar
   ];
 
   # Docker configuration
@@ -163,8 +161,11 @@
   # Zsh configuration
   programs.zsh.enable = true;
 
-  # Hyprland
-  programs.hyprland.enable = true;
+  # Sway
+  #programs.sway = {
+  #  enable = true;
+  #  wrapperFeatures.gtk = true;
+  #};
 
   # Firefox
   programs.firefox.enable = true;
