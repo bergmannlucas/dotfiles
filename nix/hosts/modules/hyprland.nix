@@ -33,6 +33,7 @@
     hyprlock
     hyprpaper
     libnotify
+    networkmanagerapplet
   ];
 }
 

@@ -145,7 +145,6 @@
     zsh
     oh-my-posh
     tmux
-    neovim
     obsidian
     gh 
     vscode 

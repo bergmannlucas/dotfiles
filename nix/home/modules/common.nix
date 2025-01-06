@@ -1,6 +1,9 @@
 {outputs, ...}: {
   imports = [
     ../modules/home.nix
+    ./go.nix
+    ./lazygit.nix
+    ./neovim.nix
   ];
 
   # Nixpkgs configuration
