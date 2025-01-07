@@ -100,6 +100,7 @@
 
     homeConfigurations = {
       "bergmannlucas@kazordoon" = mkHomeConfiguration "x86_64-linux" "bergmannlucas" "bergmannlucas-kazordoon";
+      "bergmannlucas@air" = mkHomeConfiguration "aarch64-darwin" "bergmannlucas" "bergmannlucas-air";
     };
 
     overlays = import ./overlays {inherit inputs;};

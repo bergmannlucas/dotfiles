@@ -97,7 +97,6 @@
     zsh 
     oh-my-posh 
     tmux 
-    neovim
     stow 
     ripgrep 
     fzf
