@@ -15,6 +15,8 @@
       gopls
       goimports-reviser
       golines
+      typescript-language-server
+      tailwindcss-language-server
     ];
   };
 }
