@@ -17,6 +17,7 @@
       golines
       typescript-language-server
       tailwindcss-language-server
+      nil
     ];
   };
 }
