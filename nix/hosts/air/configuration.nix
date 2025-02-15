@@ -133,6 +133,7 @@
       "pyenv" 
       "virtualenv" 
       "pyenv-virtualenv" 
+      "qmk"
     ];
     casks = [ 
       "aerospace"
@@ -144,9 +145,11 @@
       "notion-calendar" 
       "brave-browser"
       "logi-options+"
+      "firefox"
     ];
     taps = [
       "nikitabobko/tap"
+      "qmk/qmk"
     ];
     masApps = { 
       Vetero = 6449091332; 
