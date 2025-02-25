@@ -62,8 +62,7 @@
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "/Applications/Todoist.app"
           "${pkgs.slack}/Applications/Slack.app"
-          "/Applications/Brave Browser.app"
-          "/Applications/kitty.app"
+          "/Applications/Ghostty.app"
           "${pkgs.vscode}/Applications/Visual Studio Code.app"
           "/Applications/Insomnia.app"
           "/Applications/Docker.app"
@@ -143,9 +142,10 @@
       "another-redis-desktop-manager" 
       "todoist" 
       "notion-calendar" 
-      "brave-browser"
       "logi-options+"
       "firefox"
+      "rar"
+      "ghostty"
     ];
     taps = [
       "nikitabobko/tap"
@@ -155,6 +155,12 @@
       Vetero = 6449091332; 
     };
   };
+
+  system.activationScripts.postActivation.text = ''
+    # Link Nix applications to a directory Spotlight indexes
+    echo "Linking Nix applications to /Applications/Nix Apps..."
+    ln -sfn /run/current-system/sw/Applications /Applications/Nix\ Apps
+  '';
 
   # Used for backwards compatibility, please read the changelog before changing.
   system.stateVersion = 5;
