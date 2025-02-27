@@ -15,7 +15,7 @@ return {
   {
     "epwalsh/obsidian.nvim",
     version = "*",  
-    -- lazy = true,
+    lazy = true,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -37,6 +37,7 @@ return {
       templates = {
         folder = "Other/Templates",
       },
+      disable_frontmatter = true,
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
