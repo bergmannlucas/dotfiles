@@ -30,7 +30,7 @@
   nix.package = pkgs.nix;
 
   # Enable Nix daemon
-  services.nix-daemon.enable = true;
+  nix.enable = true;
 
   # User configuration
   users.users.${userConfig.name} = {
@@ -39,7 +39,7 @@
   };
 
   # Add ability to use TouchID for sudo
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # System settings
   system = {
@@ -59,8 +59,10 @@
         persistent-apps = [
           "/Applications/Notion Calendar.app"
           "${pkgs.spotify}/Applications/Spotify.app"
+          "/Applications/Notion.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "/Applications/Todoist.app"
+          "/Applications/Firefox.app"
           "${pkgs.slack}/Applications/Slack.app"
           "/Applications/Ghostty.app"
           "${pkgs.vscode}/Applications/Visual Studio Code.app"
@@ -111,9 +113,7 @@
     zoom-us 
     wget 
     slack 
-    rectangle 
     dbeaver-bin
-    spotify
   ];
 
   # Zsh configuration
@@ -136,7 +136,6 @@
     ];
     casks = [ 
       "aerospace"
-      "kitty" 
       "docker" 
       "insomnia" 
       "another-redis-desktop-manager" 
@@ -146,6 +145,7 @@
       "firefox"
       "rar"
       "ghostty"
+      "notion"
     ];
     taps = [
       "nikitabobko/tap"

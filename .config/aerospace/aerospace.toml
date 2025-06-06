@@ -195,7 +195,7 @@ if.app-id = 'com.insomnia.app'
 run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
+if.app-id = 'notion.id'
 run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
