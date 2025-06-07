@@ -51,6 +51,15 @@
 
   # Networking
   networking.networkmanager.enable = true;
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+    "2606:4700:4700::1111"
+    "2606:4700:4700::1001"
+  ];
+  networking.networkmanager.dns = "none";
+  networking.useDHCP = false;
+  networking.interfaces.wlp1s0.useDHCP = false;
 
   # Timezone
   time.timeZone = "America/Sao_Paulo";
@@ -128,6 +137,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
+    bind
     vim 
     stow
     git
@@ -151,12 +161,13 @@
     yazi 
     brave
     ghostty
+    docker-compose
+    vlc
   ];
 
   # Docker configuration
   virtualisation.docker.enable = true;
-  virtualisation.docker.rootless.enable = true;
-  virtualisation.docker.rootless.setSocketVariable = true;
+  virtualisation.docker.rootless.enable = false;
 
   # Zsh configuration
   programs.zsh.enable = true;
