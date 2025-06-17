@@ -26,15 +26,12 @@
 
   # List of Hyprland specific packages
   environment.systemPackages = with pkgs; [
-    nautilus # file manager
-
     hypridle
     hyprshot
     hyprlock
     hyprpaper
     libnotify
     networkmanagerapplet
-    nwg-look 
     brightnessctl
 
     # GTK Themes

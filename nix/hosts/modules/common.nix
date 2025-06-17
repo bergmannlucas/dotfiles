@@ -147,30 +147,12 @@
   environment.systemPackages = with pkgs; [
     bind
     vim 
-    stow
-    git
-    ripgrep
-    fzf
-    yazi
-    btop
-    htop
     wget
-    spotify
     gnumake
     gcc
     glib
     zsh
-    oh-my-posh
-    tmux
-    obsidian
-    gh 
-    vscode 
-    code-cursor
-    yazi 
-    brave
-    ghostty
     docker-compose
-    vlc
     gnome-network-displays
     pavucontrol
   ];
