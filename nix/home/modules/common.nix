@@ -7,9 +7,6 @@
     ./git.nix
     ./tmux.nix
     ./shell-tools.nix
-    ./development.nix
-    ./gui-applications.nix
-    ./file-management.nix
   ];
 
   # Nixpkgs configuration

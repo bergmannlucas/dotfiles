@@ -2,6 +2,9 @@
   imports = [
     ../modules/common.nix
     ../modules/hyprland.nix
+    ../modules/gui-applications.nix
+    ../modules/development.nix
+    ../modules/file-management.nix
   ];
 
   # Enable home-manager
