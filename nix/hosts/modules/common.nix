@@ -64,6 +64,9 @@
   # Timezone
   time.timeZone = "America/Sao_Paulo";
 
+  # Console keyboard configuration
+  console.keyMap = "us-acentos";
+
   # Internationalization
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -84,9 +87,14 @@
   # X11 settings
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    xkb = {
+      layout = "us";
+      variant = "intl";
+    };
   };
+
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # PATH configuration
   environment.localBinInPath = true;
@@ -98,7 +106,7 @@
   services.devmon.enable = true;
 
   # Enable PipeWire for sound
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -151,18 +159,20 @@
     gnumake
     gcc
     glib
-    kitty
     zsh
     oh-my-posh
     tmux
     obsidian
     gh 
     vscode 
+    code-cursor
     yazi 
     brave
     ghostty
     docker-compose
     vlc
+    gnome-network-displays
+    pavucontrol
   ];
 
   # Docker configuration
@@ -171,12 +181,6 @@
 
   # Zsh configuration
   programs.zsh.enable = true;
-
-  # Sway
-  #programs.sway = {
-  #  enable = true;
-  #  wrapperFeatures.gtk = true;
-  #};
 
   # Firefox
   programs.firefox.enable = true;

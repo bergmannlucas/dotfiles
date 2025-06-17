@@ -1,110 +1,113 @@
+/* @define-color bg0 #212121; */
+/*@define-color bg1 #353535;*/
+/*@define-color bg1 rgba(33,33,33,0.8);*/
+@define-color bg1 #212121;
+@define-color fg0 #eeffff;
+@define-color yellow #ffcb6b;
+
 * {
-  font-family: "JetBrainsMono Nerd Font";
-  font-weight: bold;
+  font-family: JetBrainsMono Nerd Font Propo;
+  font-size: 14px;
+  font-weight: 500;
   min-height: 0;
-  font-size: 100%;
-  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-  padding: 0px;
-  margin-top: 1px;
-  margin-bottom: 1px;
+  border-color: @bg1;
 }
 
 window#waybar {
-  background: rgba(0, 0, 0, 0);
+  /* background-color: @bg0; */
+  background-color: transparent;
+  color: @fg0; /* didn't affect workspaces */
 }
 
-window#waybar.hidden {
-  opacity: 0.5;
-}
+#workspaces {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 4px;
 
-tooltip {
-  background: #1e1e2e;
-  border-radius: 8px;
-}
-
-tooltip label {
-  color: #cad3f5;
-  margin-right: 5px;
-  margin-left: 5px;
-}
-
-.modules-right,
-.modules-center,
-.modules-left {
-  background-color: rgba(0, 0, 0, 0.6);
-  border: 0px solid #b4befe;
-  border-radius: 8px;
+  margin: 8px 4px 0px 8px;
 }
 
 #workspaces button {
-  padding: 2px;
-  color: #6e6a86;
-  margin-right: 5px;
+  color: @fg0;
+  border-radius: 18px;
 }
 
 #workspaces button.active {
-  color: #dfdfdf;
-  border-radius: 3px 3px 3px 3px;
+  color: @yellow;
 }
 
-#workspaces button.focused {
-  color: #d8dee9;
+#window {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
 }
 
-#workspaces button.urgent {
-  color: #ed8796;
-  border-radius: 8px;
+window#waybar.empty #window {
+  /* hide empty module */
+  background-color: transparent;
 }
 
-#workspaces button:hover {
-  color: #dfdfdf;
-  border-radius: 3px;
+#tray {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
 }
 
-#backlight,
-#battery,
-#bluetooth,
-#clock,
-#cpu,
-#custom-notification,
-#custom-recorder,
-#disk,
-#language,
-#memory,
-#network,
-#tray,
-#pulseaudio,
-#temperature,
-#workspaces {
-  color: #dfdfdf;
-  padding: 0px 10px;
-  border-radius: 8px;
+#hw {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 4px;
 }
 
-#temperature.critical {
-  background-color: #ff0000;
+#cpu {
+  margin-right: 8px;
 }
 
-@keyframes blink {
-  to {
-    color: #000000;
-  }
+#memory {
+  margin-left: 8px;
+  margin-right: 16px;
 }
 
-#taskbar button.active {
-  background-color: #7f849c;
+#control {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 4px 0px 8px;
 }
 
-#battery.critical:not(.charging) {
-  color: #f53c3c;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#battery {
+  margin-right: 8px;
 }
 
-#custom-recorder {
-  color: #ff2800;
+#network {
+  margin: 0px 8px;
 }
 
+#bluetooth {
+  margin: 0px 8px;
+}
+
+#pulseaudio {
+  margin: 0px 8px;
+}
+#backlight {
+  margin: 0px 8px;
+  margin-right: 0;
+}
+
+#clock {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 8px 0px 4px;
+}
+
+#custom-notification {
+  background-color: @bg1;
+  border-radius: 18px;
+  padding: 0px 16px;
+  margin: 8px 8px 0px 4px;
+}

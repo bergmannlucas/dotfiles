@@ -34,6 +34,11 @@
     hyprpaper
     libnotify
     networkmanagerapplet
+    nwg-look 
+    brightnessctl
+
+    # GTK Themes
+    tokyonight-gtk-theme
   ];
 }
 
