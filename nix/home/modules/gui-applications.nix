@@ -4,5 +4,7 @@
     obsidian             
     ghostty              
     vlc                  
+    discord
+    betterdiscord-installer
   ];
 } 

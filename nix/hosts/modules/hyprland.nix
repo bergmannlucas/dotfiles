@@ -17,12 +17,12 @@
   };
 
   # Enable security services
-  # services.gnome.gnome-keyring.enable = true;
-  # security.polkit.enable = true;
-  #security.pam.services = {
-  #  hyprlock = {};
-  #  gdm.enableGnomeKeyring = true;
-  #};
+  services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
+  security.pam.services = {
+   hyprlock = {};
+   gdm.enableGnomeKeyring = true;
+  };
 
   # List of Hyprland specific packages
   environment.systemPackages = with pkgs; [
@@ -36,6 +36,7 @@
 
     # GTK Themes
     tokyonight-gtk-theme
+    papirus-icon-theme
   ];
 }
 
