@@ -1,6 +1,7 @@
 {
   inputs,
   hostname,
+  pkgs,
   ...
 }: {
   imports =
@@ -10,6 +11,17 @@
       ../modules/common.nix
       ../modules/hyprland.nix
     ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  services.xserver.videoDrivers = ["intel"];
+
+  environment.systemPackages = with pkgs; [
+    intel-media-driver
+  ];
 
   # Set hostname
   networking.hostName = hostname;

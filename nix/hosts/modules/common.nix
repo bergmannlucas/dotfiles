@@ -36,6 +36,11 @@
     auto-optimise-store = true;
   };
 
+  # Enable nix-ld for running dynamically linked executables
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+  ];
+
   # Boot settings
   boot = {
     loader = {
@@ -57,7 +62,7 @@
     "2606:4700:4700::1111"
     "2606:4700:4700::1001"
   ];
-  networking.networkmanager.dns = "none";
+  # networking.networkmanager.dns = "none";
   networking.useDHCP = false;
   networking.interfaces.wlp1s0.useDHCP = false;
 
@@ -155,6 +160,8 @@
     docker-compose
     gnome-network-displays
     pavucontrol
+    ffmpeg
+    vaapiIntel
   ];
 
   # Docker configuration

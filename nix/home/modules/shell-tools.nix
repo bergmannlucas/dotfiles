@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    fnm
     ripgrep               
     oh-my-posh           
     btop                 
