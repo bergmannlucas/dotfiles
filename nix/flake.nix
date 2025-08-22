@@ -12,12 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Disko
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Nix Darwin (for MacOS machines)
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -49,19 +43,6 @@
       };
     };
 
-    # Function for NixOS system configuration
-    mkNixosConfiguration = hostname: username:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs hostname;
-          userConfig = users.${username};
-        };
-        modules = [
-          ./hosts/${hostname}/configuration.nix
-          inputs.disko.nixosModules.disko
-        ];
-      };
-
     # Function for nix-darwin system configuration
     mkDarwinConfiguration = hostname: username:
       darwin.lib.darwinSystem {
@@ -90,16 +71,11 @@
         ];
       };
   in {
-    nixosConfigurations = {
-      kazordoon = mkNixosConfiguration "kazordoon" "bergmannlucas";
-    };
-
     darwinConfigurations = {
       air = mkDarwinConfiguration "air" "bergmannlucas";
     };
 
     homeConfigurations = {
-      "bergmannlucas@kazordoon" = mkHomeConfiguration "x86_64-linux" "bergmannlucas" "bergmannlucas-kazordoon";
       "bergmannlucas@air" = mkHomeConfiguration "aarch64-darwin" "bergmannlucas" "bergmannlucas-air";
     };
 
