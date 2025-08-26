@@ -63,6 +63,7 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(zoxide init zsh)"
 
 
 source ~/.zsh_profile
