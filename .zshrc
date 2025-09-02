@@ -62,16 +62,12 @@ eval "$(fzf --zsh)"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(mise activate zsh)"
 
 
 source ~/.zsh_profile
 
-# export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
-# export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
-# export PATH="/opt/homebrew/bin:$PATH"
-# export PATH="$PATH:/Users/bergmannlucas/Library/Python/3.9/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
