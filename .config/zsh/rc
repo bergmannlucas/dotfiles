@@ -1,0 +1,7 @@
+# Load zsh configuration modules
+source ~/.config/zsh/shell
+source ~/.config/zsh/functions
+source ~/.config/zsh/envs
+source ~/.config/zsh/init
+source ~/.config/zsh/keybindings
+source ~/.config/zsh/aliases
