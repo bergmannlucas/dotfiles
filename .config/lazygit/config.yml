@@ -1,0 +1,10 @@
+confirmOnQuit: false
+os:
+  editPreset: "nvim-remote"
+  open: 'nvim --server "$NVIM" --remote {{filename}}'
+git:
+  diffContextSize: 15
+gui:
+  showIcons: true
+  showFileIcons: true
+  nerdFontsVersion: "3"
