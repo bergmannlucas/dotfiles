@@ -15,10 +15,4 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
-if command -v pyenv &> /dev/null; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
-
 

@@ -1,9 +1,6 @@
 # Environment variables and PATH management
 export XDG_CONFIG_HOME=$HOME/.config
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-
+export EDITOR=vim
 # Add local directories to PATH
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
