@@ -2,9 +2,12 @@
 config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
 
 # Font
-font-family = "Iosevka"
+font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
-font-size = 12
+font-size = 13
+adjust-cell-height = 20%
+
+theme= TokyoNight Moon
 
 # Window
 window-theme = ghostty

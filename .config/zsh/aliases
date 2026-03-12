@@ -8,6 +8,10 @@ open() {
   xdg-open "$@" >/dev/null 2>&1 &
 }
 
+# Tmux
+alias t='tmux'
+alias ta='tmux attach'
+
 # Directories
 alias ..='cd ..'
 alias ...='cd ../..'

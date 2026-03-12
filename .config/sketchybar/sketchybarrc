@@ -39,9 +39,9 @@ sketchybar --default "${default[@]}"
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/clock.sh"
 source "$ITEM_DIR/cpu.sh"
+source "$ITEM_DIR/ram.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
-
 
 sketchybar --add event aerospace_workspace_change
 
@@ -58,6 +58,4 @@ for sid in $(aerospace list-workspaces --all); do
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
-
 sketchybar --update
-
